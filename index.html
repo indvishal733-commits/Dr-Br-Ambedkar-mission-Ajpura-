@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. B.R. Ambedkar Mission Ajpura</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+    }
+    .royal-gradient {
+      background: linear-gradient(135deg, #0f296b 0%, #1d4ed8 55%, #2563eb 100%);
+    }
+    .soft-blue-bg {
+      background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+    }
+    .admin-editable-ring {
+      outline: 2px dashed rgba(37, 99, 235, 0.55);
+      outline-offset: 4px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: outline-color 0.2s, background-color 0.2s;
+    }
+    .admin-editable-ring:hover {
+      outline-color: #1d4ed8;
+      background-color: rgba(219, 234, 254, 0.35);
+    }
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .chakra-spin {
+      animation: spin-slow 45s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- Admin Top Control Bar (Visible only when Admin is logged in) -->
+  <div id="admin-bar" class="hidden sticky top-0 z-50 bg-slate-900 text-white border-b border-blue-500/40 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-600 text-white font-semibold">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          Admin Mode Active
+        </span>
+        <span id="cloud-sync-badge" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300">
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          Local Mode
+        </span>
+        <span class="text-slate-300 hidden md:inline">Kisi bhi text par click karke edit karein ya neeche diye buttons se naye items jodein.</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="btn-toggle-inline-edit" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 font-medium transition">
+          <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+          <span id="inline-edit-label">Edit Mode: ON</span>
+        </button>
+        <button id="btn-open-inbox" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 font-medium transition">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          Inbox (<span id="inbox-count">0</span>)
+        </button>
+        <button id="btn-open-settings" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 font-medium transition">
+          <i data-lucide="settings" class="w-3.5 h-3.5"></i>
+          Site Settings & Backup
+        </button>
+        <button id="btn-admin-logout" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-600/90 hover:bg-red-600 font-medium transition">
+          <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-blue-100 shadow-sm" id="main-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Brand -->
+        <a href="#home" class="flex items-center gap-3 min-w-0">
+          <div class="w-10 h-10 rounded-full royal-gradient flex items-center justify-center text-white shrink-0 shadow-md">
+            <svg viewBox="0 0 100 100" class="w-7 h-7 chakra-spin" fill="none" stroke="currentColor" stroke-width="4">
+              <circle cx="50" cy="50" r="42" />
+              <circle cx="50" cy="50" r="9" fill="currentColor" />
+              <g stroke-width="2.5">
+                <line x1="50" y1="8" x2="50" y2="92" />
+                <line x1="8" y1="50" x2="92" y2="50" />
+                <line x1="20" y1="20" x2="80" y2="80" />
+                <line x1="80" y1="20" x2="20" y2="80" />
+                <line x1="34" y1="11" x2="66" y2="89" />
+                <line x1="66" y1="11" x2="34" y2="89" />
+                <line x1="11" y1="34" x2="89" y2="66" />
+                <line x1="89" y1="34" x2="11" y2="66" />
+              </g>
+            </svg>
+          </div>
+          <div class="truncate">
+            <div data-edit="siteTitle" class="text-sm sm:text-base font-extrabold text-blue-950 truncate">Dr. B.R. Ambedkar Mission Ajpura</div>
+            <div data-edit="siteSubtitle" class="text-[11px] sm:text-xs text-blue-600 font-medium truncate">शिक्षित बनो • संगठित रहो • संघर्ष करो</div>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700">
+          <a href="#home" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition">Home</a>
+          <a href="#jeevani" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition">Baba Saheb Jeevani</a>
+          <a href="#park" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition">Park Nirman (2022)</a>
+          <a href="#padadhikari" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition">Padadhikari</a>
+          <a href="#gallery" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition">Gallery</a>
+          <a href="#karyakram" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition">Karyakram</a>
+          <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition">Contact & Location</a>
+        </nav>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-2">
+          <button id="btn-admin-login-nav" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white text-xs sm:text-sm font-semibold shadow-sm transition">
+            <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+            <span id="nav-admin-text">Admin</span>
+          </button>
+          <button id="btn-mobile-menu" class="lg:hidden p-2 rounded-lg text-blue-900 hover:bg-blue-50" aria-label="Menu">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Nav Drawer -->
+      <div id="mobile-menu" class="hidden lg:hidden pb-4 pt-2 border-t border-blue-100">
+        <div class="grid grid-cols-2 gap-1.5 text-sm font-semibold text-slate-700">
+          <a href="#home" class="mobile-nav-link px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700">Home</a>
+          <a href="#jeevani" class="mobile-nav-link px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700">Baba Saheb Jeevani</a>
+          <a href="#park" class="mobile-nav-link px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700">Park Nirman (2022)</a>
+          <a href="#padadhikari" class="mobile-nav-link px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700">Padadhikari</a>
+          <a href="#gallery" class="mobile-nav-link px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700">Gallery</a>
+          <a href="#karyakram" class="mobile-nav-link px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700">Karyakram</a>
+          <a href="#contact" class="mobile-nav-link col-span-2 px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700">Contact & Website Destination</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="royal-gradient text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="w-96 h-96 rounded-full border-[18px] border-white absolute -top-24 -right-24"></div>
+      <div class="w-72 h-72 rounded-full border-[12px] border-white absolute -bottom-24 -left-24"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Hero Text -->
+        <div class="lg:col-span-6 space-y-5 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 border border-white/25 text-xs sm:text-sm font-semibold backdrop-blur-sm">
+            <span class="w-2 h-2 rounded-full bg-amber-300"></span>
+            <span data-edit="heroBadge">नमो बुद्धाय • जय भीम • अजपुरा मिशन</span>
+          </div>
+
+          <h1 data-edit="heroHeading" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
+            Dr. B.R. Ambedkar Mission Ajpura
+          </h1>
+
+          <p data-edit="heroDescription" class="text-blue-100 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            बाबा साहेब डॉ. भीमराव अंबेडकर और तथागत गौतम बुद्ध के विचारों—समानता, शिक्षा, करुणा और बंधुत्व—को जन-जन तक पहुँचाने के लिए समर्पित सामाजिक एवं शैक्षिक मिशन।
+          </p>
+
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+            <a href="#jeevani" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-blue-900 font-bold shadow-lg hover:bg-blue-50 transition">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+              <span data-edit="heroCtaPrimary">बाबा साहेब की जीवनी पढ़ें</span>
+            </a>
+            <a href="#park" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-800/70 hover:bg-blue-800 border border-white/30 text-white font-semibold transition">
+              <i data-lucide="trees" class="w-4 h-4"></i>
+              <span data-edit="heroCtaSecondary">पार्क निर्माण (2022)</span>
+            </a>
+            <button id="btn-jai-bhim-support" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold shadow-lg transition">
+              <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+              <span>जुड़ें / समर्थन दें</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Portraits of Baba Saheb & Gautam Buddha -->
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4 sm:gap-6">
+          <!-- Baba Saheb Card -->
+          <div class="bg-white/10 backdrop-blur-md border border-white/25 rounded-2xl p-3 shadow-2xl relative group">
+            <div class="aspect-square rounded-xl overflow-hidden bg-blue-950">
+              <img id="img-babasaheb" src="images/babasaheb.jpg" alt="Baba Saheb Dr. B.R. Ambedkar" class="w-full h-full object-cover" />
+            </div>
+            <button data-img-edit="babasahebImage" class="admin-only hidden absolute top-5 right-5 px-2.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg flex items-center gap-1">
+              <i data-lucide="camera" class="w-3.5 h-3.5"></i> Photo Badlein
+            </button>
+            <div class="mt-3 text-center">
+              <div data-edit="babasahebCaptionTitle" class="font-bold text-sm sm:text-base text-white">डॉ. बी.आर. अंबेडकर</div>
+              <div data-edit="babasahebCaptionSub" class="text-xs text-blue-200">संविधान निर्माता (1891–1956)</div>
+            </div>
+          </div>
+
+          <!-- Gautam Buddha Card -->
+          <div class="bg-white/10 backdrop-blur-md border border-white/25 rounded-2xl p-3 shadow-2xl relative group">
+            <div class="aspect-square rounded-xl overflow-hidden bg-blue-950">
+              <img id="img-buddha" src="images/buddha.jpg" alt="Gautam Buddha" class="w-full h-full object-cover" />
+            </div>
+            <button data-img-edit="buddhaImage" class="admin-only hidden absolute top-5 right-5 px-2.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg flex items-center gap-1">
+              <i data-lucide="camera" class="w-3.5 h-3.5"></i> Photo Badlein
+            </button>
+            <div class="mt-3 text-center">
+              <div data-edit="buddhaCaptionTitle" class="font-bold text-sm sm:text-base text-white">तथागत गौतम बुद्ध</div>
+              <div data-edit="buddhaCaptionSub" class="text-xs text-blue-200">शांति, प्रज्ञा और करुणा के प्रतीक</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Stats / Counter Bar ("Countet") -->
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <div class="bg-white/12 backdrop-blur border border-white/20 rounded-xl p-4 text-center">
+          <div id="stat-visitors" class="text-2xl sm:text-3xl font-extrabold text-white">1,248</div>
+          <div data-edit="statVisitorsLabel" class="text-xs sm:text-sm text-blue-100 mt-1">वेबसाइट विज़िटर (Counter)</div>
+        </div>
+        <div class="bg-white/12 backdrop-blur border border-white/20 rounded-xl p-4 text-center">
+          <div id="stat-supporters" class="text-2xl sm:text-3xl font-extrabold text-amber-300">342</div>
+          <div data-edit="statSupportersLabel" class="text-xs sm:text-sm text-blue-100 mt-1">मिशन समर्थक (Jai Bhim)</div>
+        </div>
+        <div class="bg-white/12 backdrop-blur border border-white/20 rounded-xl p-4 text-center">
+          <div id="stat-members" class="text-2xl sm:text-3xl font-extrabold text-white">0</div>
+          <div data-edit="statMembersLabel" class="text-xs sm:text-sm text-blue-100 mt-1">पदाधिकारी एवं सदस्य</div>
+        </div>
+        <div class="bg-white/12 backdrop-blur border border-white/20 rounded-xl p-4 text-center">
+          <div id="stat-park-year" data-edit="statParkValue" class="text-2xl sm:text-3xl font-extrabold text-white">2022</div>
+          <div data-edit="statParkLabel" class="text-xs sm:text-sm text-blue-100 mt-1">अजपुरा पार्क निर्माण वर्ष</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Baba Saheb Ki Puri Jankaari (Jeevani & Sangharsh) -->
+  <section id="jeevani" class="py-14 sm:py-16 soft-blue-bg border-b border-blue-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider">जीवन परिचय और संघर्ष</span>
+          <h2 data-edit="jeevaniHeading" class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">
+            बाबा साहेब डॉ. भीमराव अंबेडकर — संपूर्ण जीवनी व संघर्ष
+          </h2>
+          <p data-edit="jeevaniSubheading" class="text-slate-600 mt-2 max-w-3xl">
+            14 अप्रैल 1891 को महू में जन्म से लेकर भारतीय संविधान के निर्माण और 1956 में धम्म दीक्षा तक बाबा साहेब का जीवन समानता और शिक्षा के संघर्ष की अमर गाथा है।
+          </p>
+        </div>
+        <button id="btn-add-timeline" class="admin-only hidden shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold shadow-sm transition">
+          <i data-lucide="plus" class="w-4 h-4"></i> नयी जानकारी / वर्ष जोड़ें
+        </button>
+      </div>
+
+      <!-- Quick Fact Summary Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        <div class="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-3">
+            <i data-lucide="calendar" class="w-5 h-5"></i>
+          </div>
+          <div data-edit="fact1Title" class="font-bold text-blue-950">जन्म एवं प्रारंभिक जीवन</div>
+          <p data-edit="fact1Text" class="text-sm text-slate-600 mt-1.5">14 अप्रैल 1891 को महू (मध्य प्रदेश) में सूबेदार रामजी मालोजी सकपाल और भीमाबाई के घर जन्म। बचपन में छुआछूत के बावजूद शिक्षा को हथियार बनाया।</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-3">
+            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+          </div>
+          <div data-edit="fact2Title" class="font-bold text-blue-950">विश्वस्तरीय उच्च शिक्षा</div>
+          <p data-edit="fact2Text" class="text-sm text-slate-600 mt-1.5">एल्फिंस्टन कॉलेज (1912), कोलंबिया विश्वविद्यालय से M.A. (1915) व Ph.D. (1927), लंदन स्कूल ऑफ इकोनॉमिक्स से D.Sc. (1923) तथा ग्रेज़ इन से बैरिस्टर-एट-लॉ।</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-3">
+            <i data-lucide="scale" class="w-5 h-5"></i>
+          </div>
+          <div data-edit="fact3Title" class="font-bold text-blue-950">संविधान एवं न्याय</div>
+          <p data-edit="fact3Text" class="text-sm text-slate-600 mt-1.5">संविधान प्रारूप समिति के अध्यक्ष और स्वतंत्र भारत के प्रथम कानून मंत्री (1947–1951)। 26 जनवरी 1950 को लागू संविधान में हर नागरिक को समान अधिकार दिलाए।</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-3">
+            <i data-lucide="sun" class="w-5 h-5"></i>
+          </div>
+          <div data-edit="fact4Title" class="font-bold text-blue-950">धम्म दीक्षा व भारत रत्न</div>
+          <p data-edit="fact4Text" class="text-sm text-slate-600 mt-1.5">14 अक्टूबर 1956 को नागपुर में लाखों अनुयायियों संग बौद्ध धम्म अपनाया। 6 दिसंबर 1956 को महापरिनिर्वाण और 1990 में मरणोपरांत भारत रत्न से सम्मानित।</p>
+        </div>
+      </div>
+
+      <!-- Detailed Struggle & Timeline -->
+      <div class="bg-white rounded-2xl border border-blue-100 shadow-sm p-6 sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <h3 data-edit="timelineTitle" class="text-xl font-bold text-blue-950">प्रमुख संघर्ष एवं ऐतिहासिक पड़ाव</h3>
+          <span class="text-xs text-blue-600 font-medium">Admin मोड में किसी भी पड़ाव को Edit या Delete कर सकते हैं</span>
+        </div>
+        <div id="timeline-list" class="space-y-4"></div>
+      </div>
+
+      <!-- Quotes Block -->
+      <div class="mt-8">
+        <div class="flex items-center justify-between mb-4">
+          <h3 data-edit="quotesHeading" class="text-lg font-bold text-blue-950">बाबा साहेब और तथागत बुद्ध के अनमोल विचार</h3>
+          <button id="btn-add-quote" class="admin-only hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i> विचार जोड़ें
+          </button>
+        </div>
+        <div id="quotes-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Park Nirman (2022) -->
+  <section id="park" class="py-14 sm:py-16 bg-white border-b border-blue-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider">सामुदायिक धरोहर • 2022</span>
+          <h2 data-edit="parkHeading" class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">
+            पार्क निर्माण (2022) — अजपुरा अंबेडकर पार्क
+          </h2>
+          <p data-edit="parkSubheading" class="text-slate-600 mt-2 max-w-3xl">
+            वर्ष 2022 में ग्राम समाज और मिशन साथियों के सहयोग से निर्मित यह पार्क अजपुरा में सामाजिक एकता, सांस्कृतिक कार्यक्रमों और बच्चों के लिए एक स्वच्छ प्रेरणास्थल है।
+          </p>
+        </div>
+        <button id="btn-add-park-item" class="admin-only hidden shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold shadow-sm transition">
+          <i data-lucide="plus" class="w-4 h-4"></i> नया कार्य जोड़ें
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-6 relative">
+          <div class="rounded-2xl overflow-hidden border-2 border-blue-100 shadow-lg bg-blue-50">
+            <img id="img-park" src="images/park.jpg" alt="Ambedkar Park Ajpura 2022" class="w-full h-auto object-cover" />
+          </div>
+          <button data-img-edit="parkImage" class="admin-only hidden absolute top-4 right-4 px-3 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold shadow-lg flex items-center gap-1.5">
+            <i data-lucide="camera" class="w-3.5 h-3.5"></i> Park Photo Badlein
+          </button>
+        </div>
+
+        <div class="lg:col-span-6 space-y-4">
+          <div class="bg-blue-50/70 border border-blue-100 rounded-2xl p-5">
+            <h3 data-edit="parkOverviewTitle" class="font-bold text-lg text-blue-950">निर्माण विवरण (2022)</h3>
+            <p data-edit="parkOverviewText" class="text-sm text-slate-700 mt-2 leading-relaxed">
+              सन् 2022 में शुरू हुए इस पार्क निर्माण कार्य में भव्य नीला-सफेद प्रवेश द्वार, चारदीवारी, हरित लॉन, पैदल पथ और अंबेडकर जयंती व बुद्ध पूर्णिमा जैसे आयोजनों के लिए मंच तैयार किया गया।
+            </p>
+          </div>
+          <div id="park-milestones" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Padadhikari (Office Bearers — Add Anyone) -->
+  <section id="padadhikari" class="py-14 sm:py-16 soft-blue-bg border-b border-blue-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider">मिशन समिति</span>
+          <h2 data-edit="padadhikariHeading" class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">
+            पदाधिकारी एवं सक्रिय सदस्य (Padadhikari)
+          </h2>
+          <p data-edit="padadhikariSubheading" class="text-slate-600 mt-2">
+            मिशन की कार्यकारिणी टीम। Admin लॉगिन करके आप किसी भी व्यक्ति को जोड़, बदल या हटा सकते हैं।
+          </p>
+        </div>
+        <button id="btn-add-member" class="admin-only hidden shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold shadow-sm transition">
+          <i data-lucide="user-plus" class="w-4 h-4"></i> नया पदाधिकारी / सदस्य जोड़ें
+        </button>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="mb-6 flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-1 max-w-md">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+          <input id="member-search" type="text" placeholder="नाम या पद से खोजें (जैसे: अध्यक्ष, सचिव)..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-blue-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+
+      <div id="members-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+    </div>
+  </section>
+
+  <!-- Section 4: Gallery -->
+  <section id="gallery" class="py-14 sm:py-16 bg-white border-b border-blue-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider">यादगार पल</span>
+          <h2 data-edit="galleryHeading" class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">
+            फोटो गैलरी (Gallery)
+          </h2>
+          <p data-edit="gallerySubheading" class="text-slate-600 mt-2">
+            पार्क निर्माण 2022, अंबेडकर जयंती, बुद्ध पूर्णिमा और मिशन कार्यों की झलकियाँ।
+          </p>
+        </div>
+        <button id="btn-add-gallery" class="admin-only hidden shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold shadow-sm transition">
+          <i data-lucide="image-plus" class="w-4 h-4"></i> नयी फोटो जोड़ें
+        </button>
+      </div>
+
+      <!-- Category Filters -->
+      <div id="gallery-filters" class="flex flex-wrap gap-2 mb-6"></div>
+
+      <!-- Gallery Grid -->
+      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </div>
+  </section>
+
+  <!-- Section 5: Karyakram & Mission Initiatives (Added Extra Section) -->
+  <section id="karyakram" class="py-14 sm:py-16 soft-blue-bg border-b border-blue-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider">कार्यक्रम एवं सूचनाएं</span>
+          <h2 data-edit="eventsHeading" class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">
+            आगामी कार्यक्रम व सामाजिक पहल
+          </h2>
+          <p data-edit="eventsSubheading" class="text-slate-600 mt-2">
+            मिशन द्वारा आयोजित वार्षिक उत्सव, शिक्षा जागरूकता और सामुदायिक कार्यक्रम।
+          </p>
+        </div>
+        <button id="btn-add-event" class="admin-only hidden shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold shadow-sm transition">
+          <i data-lucide="calendar-plus" class="w-4 h-4"></i> नया कार्यक्रम जोड़ें
+        </button>
+      </div>
+
+      <div id="events-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5"></div>
+    </div>
+  </section>
+
+  <!-- Section 6: Contact & Website Destination -->
+  <section id="contact" class="py-14 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider">संपर्क और स्थान</span>
+        <h2 data-edit="contactHeading" class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">
+          संपर्क करें एवं वेबसाइट स्थान (Website Destination)
+        </h2>
+        <p data-edit="contactSubheading" class="text-slate-600 mt-2">
+          अजपुरा मिशन से जुड़ने, कार्यक्रम की जानकारी लेने या सुझाव भेजने के लिए नीचे संपर्क करें।
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Destination & Info Card -->
+        <div class="lg:col-span-5 royal-gradient text-white rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
+          <div>
+            <div class="text-xs uppercase tracking-wider text-blue-200 font-bold">Website Destination / Address</div>
+            <h3 data-edit="destTitle" class="text-xl font-bold mt-1">डॉ. बी.आर. अंबेडकर मिशन पार्क, अजपुरा</h3>
+            <p data-edit="destAddress" class="text-blue-100 text-sm mt-2 leading-relaxed">
+              ग्राम: अजपुरा (Ajpura), अंबेडकर पार्क परिसर (निर्मित वर्ष 2022), मुख्य मार्ग के पास। (Admin सेटिंग्स से पूरा जिला, राज्य व पिन कोड जोड़ें)
+            </p>
+          </div>
+
+          <div class="space-y-3 text-sm">
+            <div class="flex items-start gap-3">
+              <i data-lucide="phone" class="w-5 h-5 text-amber-300 shrink-0 mt-0.5"></i>
+              <div>
+                <div class="text-blue-200 text-xs">संपर्क नंबर</div>
+                <div data-edit="contactPhone" class="font-semibold">+91 98XXX XXXXX</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="mail" class="w-5 h-5 text-amber-300 shrink-0 mt-0.5"></i>
+              <div>
+                <div class="text-blue-200 text-xs">ईमेल पता</div>
+                <div data-edit="contactEmail" class="font-semibold">missionajpura@example.com</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="clock" class="w-5 h-5 text-amber-300 shrink-0 mt-0.5"></i>
+              <div>
+                <div class="text-blue-200 text-xs">पार्क समय</div>
+                <div data-edit="contactHours" class="font-semibold">प्रतिदिन सुबह 6:00 बजे से शाम 8:00 बजे तक</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <a id="maps-link" href="https://maps.google.com/?q=Ajpura" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-blue-900 font-bold text-sm hover:bg-blue-50 transition shadow">
+              <i data-lucide="map-pin" class="w-4 h-4"></i>
+              <span data-edit="mapsButtonText">Google Maps पर स्थान देखें</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-7 bg-blue-50/60 border border-blue-100 rounded-2xl p-6 sm:p-8">
+          <h3 data-edit="formTitle" class="text-xl font-bold text-blue-950 mb-4">संदेश / सुझाव भेजें</h3>
+          <form id="contact-form" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">आपका नाम *</label>
+                <input id="cf-name" type="text" required placeholder="अपना पूरा नाम लिखें" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">मोबाइल नंबर *</label>
+                <input id="cf-phone" type="tel" required placeholder="10 अंकों का नंबर" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">विषय</label>
+              <input id="cf-subject" type="text" placeholder="जैसे: सदस्यता, पार्क सुझाव, कार्यक्रम जानकारी" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">संदेश *</label>
+              <textarea id="cf-message" rows="4" required placeholder="अपना संदेश यहाँ लिखें..." class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            </div>
+            <button type="submit" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm shadow transition">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              संदेश भेजें
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-950 text-blue-100 py-8 border-t border-blue-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+      <div data-edit="footerLeft" class="text-center sm:text-left">
+        © 2022–2026 Dr. B.R. Ambedkar Mission Ajpura • नमो बुद्धाय • जय भीम
+      </div>
+      <div class="flex items-center gap-4">
+        <span data-edit="footerRight" class="text-blue-300 text-xs">Admin Managed Public Portal</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl border border-blue-500/40 text-sm font-medium flex items-center gap-2.5">
+    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-400 shrink-0"></i>
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- Universal Modal Backdrop -->
+  <div id="modal-backdrop" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="modal-box" class="bg-white rounded-2xl shadow-2xl border border-blue-100 w-full max-w-lg max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-blue-100 sticky top-0 bg-white z-10">
+        <h3 id="modal-title" class="text-lg font-bold text-blue-950">Modal</h3>
+        <button id="modal-close" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="modal-body" class="p-6"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal for Gallery -->
+  <div id="lightbox" class="fixed inset-0 z-50 hidden bg-slate-950/90 flex items-center justify-center p-4">
+    <button id="lightbox-close" class="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    <div class="max-w-4xl w-full text-center">
+      <img id="lightbox-img" src="" alt="" class="max-h-[78vh] mx-auto rounded-xl shadow-2xl object-contain" />
+      <div id="lightbox-caption" class="text-white font-semibold mt-3 text-base"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = 'ambedkar_mission_ajpura_v1';
+
+      const DEFAULT_DATA = {
+        cloudSyncUrl: '',
+        adminPin: '1956',
+        stats: {
+          visitors: 1248,
+          supporters: 342
+        },
+        mapsUrl: 'https://maps.google.com/?q=Ajpura',
+        images: {
+          babasahebImage: 'images/babasaheb.jpg',
+          buddhaImage: 'images/buddha.jpg',
+          parkImage: 'images/park.jpg'
+        },
+        texts: {
+          siteTitle: 'Dr. B.R. Ambedkar Mission Ajpura',
+          siteSubtitle: 'शिक्षित बनो • संगठित रहो • संघर्ष करो',
+          heroBadge: 'नमो बुद्धाय • जय भीम • अजपुरा मिशन',
+          heroHeading: 'Dr. B.R. Ambedkar Mission Ajpura',
+          heroDescription: 'बाबा साहेब डॉ. भीमराव अंबेडकर और तथागत गौतम बुद्ध के विचारों—समानता, शिक्षा, करुणा और बंधुत्व—को जन-जन तक पहुँचाने के लिए समर्पित सामाजिक एवं शैक्षिक मिशन।',
+          heroCtaPrimary: 'बाबा साहेब की जीवनी पढ़ें',
+          heroCtaSecondary: 'पार्क निर्माण (2022)',
+          babasahebCaptionTitle: 'डॉ. बी.आर. अंबेडकर',
+          babasahebCaptionSub: 'संविधान निर्माता (1891–1956)',
+          buddhaCaptionTitle: 'तथागत गौतम बुद्ध',
+          buddhaCaptionSub: 'शांति, प्रज्ञा और करुणा के प्रतीक',
+          statVisitorsLabel: 'वेबसाइट विज़िटर (Counter)',
+          statSupportersLabel: 'मिशन समर्थक (Jai Bhim)',
+          statMembersLabel: 'पदाधिकारी एवं सदस्य',
+          statParkValue: '2022',
+          statParkLabel: 'अजपुरा पार्क निर्माण वर्ष',
+          jeevaniHeading: 'बाबा साहेब डॉ. भीमराव अंबेडकर — संपूर्ण जीवनी व संघर्ष',
+          jeevaniSubheading: '14 अप्रैल 1891 को महू में जन्म से लेकर भारतीय संविधान के निर्माण और 1956 में धम्म दीक्षा तक बाबा साहेब का जीवन समानता और शिक्षा के संघर्ष की अमर गाथा है।',
+          fact1Title: 'जन्म एवं प्रारंभिक जीवन',
+          fact1Text: '14 अप्रैल 1891 को महू (मध्य प्रदेश) में सूबेदार रामजी मालोजी सकपाल और भीमाबाई के घर जन्म। बचपन में छुआछूत के बावजूद शिक्षा को हथियार बनाया।',
+          fact2Title: 'विश्वस्तरीय उच्च शिक्षा',
+          fact2Text: 'एल्फिंस्टन कॉलेज (1912), कोलंबिया विश्वविद्यालय से M.A. (1915) व Ph.D. (1927), लंदन स्कूल ऑफ इकोनॉमिक्स से D.Sc. (1923) तथा ग्रेज़ इन से बैरिस्टर-एट-लॉ।',
+          fact3Title: 'संविधान एवं न्याय',
+          fact3Text: 'संविधान प्रारूप समिति के अध्यक्ष और स्वतंत्र भारत के प्रथम कानून मंत्री (1947–1951)। 26 जनवरी 1950 को लागू संविधान में हर नागरिक को समान अधिकार दिलाए।',
+          fact4Title: 'धम्म दीक्षा व भारत रत्न',
+          fact4Text: '14 अक्टूबर 1956 को नागपुर में लाखों अनुयायियों संग बौद्ध धम्म अपनाया। 6 दिसंबर 1956 को महापरिनिर्वाण और 1990 में मरणोपरांत भारत रत्न से सम्मानित।',
+          timelineTitle: 'प्रमुख संघर्ष एवं ऐतिहासिक पड़ाव',
+          quotesHeading: 'बाबा साहेब और तथागत बुद्ध के अनमोल विचार',
+          parkHeading: 'पार्क निर्माण (2022) — अजपुरा अंबेडकर पार्क',
+          parkSubheading: 'वर्ष 2022 में ग्राम समाज और मिशन साथियों के सहयोग से निर्मित यह पार्क अजपुरा में सामाजिक एकता, सांस्कृतिक कार्यक्रमों और बच्चों के लिए एक स्वच्छ प्रेरणास्थल है।',
+          parkOverviewTitle: 'निर्माण विवरण (2022)',
+          parkOverviewText: 'सन् 2022 में शुरू हुए इस पार्क निर्माण कार्य में भव्य नीला-सफेद प्रवेश द्वार, चारदीवारी, हरित लॉन, पैदल पथ और अंबेडकर जयंती व बुद्ध पूर्णिमा जैसे आयोजनों के लिए मंच तैयार किया गया।',
+          padadhikariHeading: 'पदाधिकारी एवं सक्रिय सदस्य (Padadhikari)',
+          padadhikariSubheading: 'मिशन की कार्यकारिणी टीम। Admin लॉगिन करके आप किसी भी व्यक्ति को जोड़, बदल या हटा सकते हैं।',
+          galleryHeading: 'फोटो गैलरी (Gallery)',
+          gallerySubheading: 'पार्क निर्माण 2022, अंबेडकर जयंती, बुद्ध पूर्णिमा और मिशन कार्यों की झलकियाँ।',
+          eventsHeading: 'आगामी कार्यक्रम व सामाजिक पहल',
+          eventsSubheading: 'मिशन द्वारा आयोजित वार्षिक उत्सव, शिक्षा जागरूकता और सामुदायिक कार्यक्रम।',
+          contactHeading: 'संपर्क करें एवं वेबसाइट स्थान (Website Destination)',
+          contactSubheading: 'अजपुरा मिशन से जुड़ने, कार्यक्रम की जानकारी लेने या सुझाव भेजने के लिए नीचे संपर्क करें।',
+          destTitle: 'डॉ. बी.आर. अंबेडकर मिशन पार्क, अजपुरा',
+          destAddress: 'ग्राम: अजपुरा (Ajpura), अंबेडकर पार्क परिसर (निर्मित वर्ष 2022), मुख्य मार्ग के पास। (Admin सेटिंग्स से पूरा जिला, राज्य व पिन कोड जोड़ें)',
+          contactPhone: '+91 98XXX XXXXX',
+          contactEmail: 'missionajpura@example.com',
+          contactHours: 'प्रतिदिन सुबह 6:00 बजे से शाम 8:00 बजे तक',
+          mapsButtonText: 'Google Maps पर स्थान देखें',
+          formTitle: 'संदेश / सुझाव भेजें',
+          footerLeft: '© 2022–2026 Dr. B.R. Ambedkar Mission Ajpura • नमो बुद्धाय • जय भीम',
+          footerRight: 'Admin Managed Public Portal'
+        },
+        timeline: [
+          { id: 't1', year: '14 अप्रैल 1891', title: 'जन्म (महू, मध्य प्रदेश)', desc: 'भीमराव रामजी अंबेडकर का जन्म महू छावनी में हुआ। बचपन से ही सामाजिक भेदभाव का सामना करते हुए उन्होंने पढ़ाई जारी रखी।' },
+          { id: 't2', year: '1913–1923', title: 'विदेश में उच्च शिक्षा (कोलंबिया और लंदन)', desc: 'बड़ौदा के महाराजा सयाजीराव गायकवाड़ की छात्रवृत्ति से कोलंबिया विश्वविद्यालय (अमेरिका) और लंदन स्कूल ऑफ इकोनॉमिक्स से अर्थशास्त्र व कानून की सर्वोच्च डिग्रियाँ प्राप्त कीं।' },
+          { id: 't3', year: '1920 & 1924', title: 'मूकनायक और बहिष्कृत हितकारिणी सभा', desc: 'वंचित समाज की आवाज़ उठाने के लिए "मूकनायक" पत्रिका शुरू की और 1924 में "शिक्षित बनो, संगठित रहो, संघर्ष करो" के नारे के साथ बहिष्कृत हितकारिणी सभा बनाई।' },
+          { id: 't4', year: '20 मार्च 1927', title: 'महाड सत्याग्रह', desc: 'महाराष्ट्र के महाड में चवदार तालाब से सभी को पानी पीने के मानवाधिकार के लिए ऐतिहासिक सत्याग्रह का नेतृत्व किया।' },
+          { id: 't5', year: '24 सितंबर 1932', title: 'पूना पैक्ट', desc: 'वंचित वर्गों के राजनीतिक प्रतिनिधित्व और अधिकारों को सुरक्षित करने के लिए यरवदा जेल में ऐतिहासिक पूना समझौता हुआ।' },
+          { id: 't6', year: '1947–1950', title: 'भारतीय संविधान का निर्माण', desc: 'संविधान सभा की प्रारूप समिति के अध्यक्ष के रूप में विश्व का सबसे बड़ा लोकतांत्रिक संविधान तैयार किया, जो 26 जनवरी 1950 को लागू हुआ।' },
+          { id: 't7', year: '14 अक्टूबर 1956', title: 'धम्म दीक्षा (नागपुर)', desc: 'लाखों अनुयायियों के साथ दीक्षाभूमि नागपुर में तथागत गौतम बुद्ध का करुणा व समानता आधारित बौद्ध धम्म स्वीकार किया।' },
+          { id: 't8', year: '6 दिसंबर 1956', title: 'महापरिनिर्वाण', desc: 'अपनी अंतिम पुस्तक "द बुद्ध एंड हिज धम्म" पूर्ण करने के तीन दिन बाद दिल्ली में महापरिनिर्वाण हुआ। 1990 में भारत रत्न से सम्मानित।' }
+        ],
+        quotes: [
+          { id: 'q1', text: 'शिक्षित बनो, संगठित रहो और संघर्ष करो।', author: 'डॉ. भीमराव अंबेडकर' },
+          { id: 'q2', text: 'शिक्षा वह शेरनी का दूध है, जो पिएगा वह दहाड़ेगा।', author: 'डॉ. भीमराव अंबेडकर' },
+          { id: 'q3', text: 'अप्पो दीपो भव — अपना प्रकाश स्वयं बनो।', author: 'तथागत गौतम बुद्ध' }
+        ],
+        parkMilestones: [
+          { id: 'p1', phase: 'चरण 1 (2022)', title: 'भूमि पूजन व नींव', status: 'पूर्ण', desc: 'ग्राम अजपुरा में समाज के सहयोग से पार्क की भूमि का समतलीकरण और शिलान्यास।' },
+          { id: 'p2', phase: 'चरण 2 (2022)', title: 'प्रवेश द्वार व चारदीवारी', status: 'पूर्ण', desc: 'सुरक्षा हेतु चारदीवारी एवं नीले-सफेद रंग का आकर्षक मुख्य प्रवेश द्वार निर्माण।' },
+          { id: 'p3', phase: 'चरण 3 (2022)', title: 'हरित लॉन व पैदल पथ', status: 'पूर्ण', desc: 'पार्क में वृक्षारोपण, घास का मैदान, बैठने की बेंच और टहलने हेतु पक्का रास्ता।' },
+          { id: 'p4', phase: 'चरण 4 (जारी)', title: 'पुस्तकालय व सामुदायिक मंच', status: 'सक्रिय', desc: 'अंबेडकर जयंती समारोह और बच्चों की पढ़ाई के लिए सामुदायिक सुविधा का विस्तार।' }
+        ],
+        members: [
+          { id: 'm1', name: 'अध्यक्ष जी (नाम बदलें)', role: 'अध्यक्ष (President)', phone: '+91 98XXX XXXXX', bio: 'मिशन संचालन एवं पार्क निर्माण 2022 के प्रमुख संयोजक।', photo: '' },
+          { id: 'm2', name: 'उपाध्यक्ष जी (नाम बदलें)', role: 'उपाध्यक्ष (Vice President)', phone: '+91 97XXX XXXXX', bio: 'सामुदायिक समन्वय एवं सामाजिक जागरूकता अभियान।', photo: '' },
+          { id: 'm3', name: 'सचिव जी (नाम बदलें)', role: 'सचिव (Secretary)', phone: '+91 96XXX XXXXX', bio: 'कार्यक्रम प्रबंधन, बैठक विवरण और युवा शिक्षा मार्गदर्शन।', photo: '' },
+          { id: 'm4', name: 'कोषाध्यक्ष जी (नाम बदलें)', role: 'कोषाध्यक्ष (Treasurer)', phone: '+91 95XXX XXXXX', bio: 'पार्क निर्माण व मिशन कोष का पारदर्शी लेखा-जोखा।', photo: '' }
+        ],
+        gallery: [
+          { id: 'g1', title: 'अजपुरा अंबेडकर पार्क (2022)', category: 'Park Nirman 2022', image: 'images/park.jpg', desc: 'वर्ष 2022 में निर्मित पार्क का सुंदर दृश्य।' },
+          { id: 'g2', title: 'बाबा साहेब डॉ. बी.आर. अंबेडकर', category: 'Jayanti & Prerna', image: 'images/babasaheb.jpg', desc: 'संविधान निर्माता बाबा साहेब को शत-शत नमन।' },
+          { id: 'g3', title: 'तथागत गौतम बुद्ध', category: 'Dhamma & Peace', image: 'images/buddha.jpg', desc: 'शांति, करुणा और प्रज्ञा का संदेश।' }
+        ],
+        events: [
+          { id: 'e1', date: '14 अप्रैल', title: 'बाबा साहेब अंबेडकर जयंती महोत्सव', location: 'अंबेडकर पार्क, अजपुरा', desc: 'प्रभात फेरी, माल्यार्पण, विचार गोष्ठी एवं मेधावी छात्रों का सम्मान।' },
+          { id: 'e2', date: 'मई माह', title: 'बुद्ध पूर्णिमा एवं धम्म चर्चा', location: 'अंबेडकर पार्क, अजपुरा', desc: 'तथागत बुद्ध के पंचशील सिद्धांतों पर सामूहिक चर्चा और प्रसाद वितरण।' },
+          { id: 'e3', date: '26 नवंबर', title: 'भारतीय संविधान दिवस', location: 'अजपुरा मिशन परिसर', desc: 'संविधान की प्रस्तावना का सामूहिक वाचन और नागरिक अधिकार जागरूकता।' }
+        ],
+        inbox: []
+      };
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return structuredClone(DEFAULT_DATA);
+          const parsed = JSON.parse(raw);
+          return {
+            ...structuredClone(DEFAULT_DATA),
+            ...parsed,
+            stats: { ...DEFAULT_DATA.stats, ...(parsed.stats || {}) },
+            images: { ...DEFAULT_DATA.images, ...(parsed.images || {}) },
+            texts: { ...DEFAULT_DATA.texts, ...(parsed.texts || {}) }
+          };
+        } catch (e) {
+          return structuredClone(DEFAULT_DATA);
+        }
+      }
+
+      function getCleanDbUrl(url) {
+        return String(url || '').trim().replace(/\/+$/, '');
+      }
+
+      function updateCloudBadge(statusText, isOnline) {
+        const badge = document.getElementById('cloud-sync-badge');
+        if (!badge) return;
+        badge.innerHTML = `<span class="w-2 h-2 rounded-full ${isOnline ? 'bg-emerald-400' : 'bg-amber-400'}"></span> ${escapeHtml(statusText)}`;
+      }
+
+      async function pushCloudState() {
+        const base = getCleanDbUrl(state.cloudSyncUrl);
+        if (!base || !base.startsWith('https://')) {
+          updateCloudBadge('Local Mode', false);
+          return;
+        }
+        try {
+          updateCloudBadge('Syncing...', true);
+          const res = await fetch(base + '/ajpuraSiteData.json', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(state)
+          });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          updateCloudBadge('Live Cloud Sync ON', true);
+        } catch (err) {
+          updateCloudBadge('Cloud Sync Error', false);
+        }
+      }
+
+      async function fetchCloudState() {
+        const base = getCleanDbUrl(state.cloudSyncUrl);
+        if (!base || !base.startsWith('https://')) {
+          updateCloudBadge('Local Mode', false);
+          return;
+        }
+        try {
+          const res = await fetch(base + '/ajpuraSiteData.json');
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const remote = await res.json();
+          if (remote && remote.texts) {
+            state = {
+              ...structuredClone(DEFAULT_DATA),
+              ...remote,
+              cloudSyncUrl: base,
+              stats: { ...DEFAULT_DATA.stats, ...(remote.stats || {}) },
+              images: { ...DEFAULT_DATA.images, ...(remote.images || {}) },
+              texts: { ...DEFAULT_DATA.texts, ...(remote.texts || {}) }
+            };
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+            renderAll();
+          }
+          updateCloudBadge('Live Cloud Sync ON', true);
+        } catch (err) {
+          updateCloudBadge('Cloud Offline (Local)', false);
+        }
+      }
+
+      function saveState(skipCloud) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {
+          showToast('ध्यान दें: ब्राउज़र स्टोरेज भर गया है, कृपया बड़ी फोटो की जगह छोटी फोटो या URL उपयोग करें।');
+        }
+        if (!skipCloud && state.cloudSyncUrl) {
+          pushCloudState();
+        }
+      }
+
+      let state = loadState();
+      let isAdmin = false;
+      let inlineEditOn = true;
+      let activeGalleryCategory = 'All';
+      let memberSearchQuery = '';
+
+      // Increment visitor counter once per session
+      try {
+        if (!sessionStorage.getItem('ajpura_visited')) {
+          state.stats.visitors += 1;
+          sessionStorage.setItem('ajpura_visited', '1');
+          saveState();
+        }
+      } catch (e) {}
+
+      function showToast(msg) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-msg').textContent = msg;
+        toast.classList.remove('hidden');
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(() => toast.classList.add('hidden'), 3200);
+      }
+
+      function openModal(title, htmlContent) {
+        document.getElementById('modal-title').textContent = title;
+        document.getElementById('modal-body').innerHTML = htmlContent;
+        document.getElementById('modal-backdrop').classList.remove('hidden');
+        lucide.createIcons();
+      }
+
+      function closeModal() {
+        document.getElementById('modal-backdrop').classList.add('hidden');
+      }
+
+      document.getElementById('modal-close').addEventListener('click', closeModal);
+      document.getElementById('modal-backdrop').addEventListener('click', (e) => {
+        if (e.target.id === 'modal-backdrop') closeModal();
+      });
+
+      function escapeHtml(str) {
+        return String(str || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function renderAll() {
+        // Texts
+        document.title = state.texts.siteTitle || 'Dr. B.R. Ambedkar Mission Ajpura';
+        document.querySelectorAll('[data-edit]').forEach((el) => {
+          const key = el.getAttribute('data-edit');
+          if (state.texts[key] !== undefined) {
+            el.textContent = state.texts[key];
+          }
+          if (isAdmin && inlineEditOn) {
+            el.classList.add('admin-editable-ring');
+            el.setAttribute('title', 'Click karke edit karein');
+          } else {
+            el.classList.remove('admin-editable-ring');
+            el.removeAttribute('title');
+          }
+        });
+
+        // Images & Maps URL
+        document.getElementById('img-babasaheb').src = state.images.babasahebImage;
+        document.getElementById('img-buddha').src = state.images.buddhaImage;
+        document.getElementById('img-park').src = state.images.parkImage;
+        document.getElementById('maps-link').href = state.mapsUrl || 'https://maps.google.com/?q=Ajpura';
+
+        // Stats
+        document.getElementById('stat-visitors').textContent = state.stats.visitors.toLocaleString('en-IN');
+        document.getElementById('stat-supporters').textContent = state.stats.supporters.toLocaleString('en-IN');
+        document.getElementById('stat-members').textContent = state.members.length;
+        document.getElementById('inbox-count').textContent = state.inbox.length;
+
+        // Admin UI visibility
+        document.getElementById('admin-bar').classList.toggle('hidden', !isAdmin);
+        document.getElementById('nav-admin-text').textContent = isAdmin ? 'Admin ON' : 'Admin';
+        document.querySelectorAll('.admin-only').forEach((el) => {
+          el.classList.toggle('hidden', !isAdmin);
+        });
+        document.getElementById('inline-edit-label').textContent = inlineEditOn ? 'Edit Mode: ON' : 'Edit Mode: OFF';
+
+        renderTimeline();
+        renderQuotes();
+        renderParkMilestones();
+        renderMembers();
+        renderGallery();
+        renderEvents();
+        lucide.createIcons();
+      }
+
+      function renderTimeline() {
+        const container = document.getElementById('timeline-list');
+        if (!state.timeline.length) {
+          container.innerHTML = '<p class="text-sm text-slate-500">कोई जानकारी उपलब्ध नहीं है।</p>';
+          return;
+        }
+        container.innerHTML = state.timeline.map((item) => `
+          <div class="relative pl-6 border-l-2 border-blue-200 pb-2">
+            <span class="w-3.5 h-3.5 rounded-full bg-blue-600 border-2 border-white shadow absolute -left-[8px] top-1.5"></span>
+            <div class="flex flex-wrap items-start justify-between gap-2 bg-blue-50/50 rounded-xl p-4 border border-blue-100">
+              <div class="flex-1 min-w-0">
+                <span class="inline-block px-2.5 py-0.5 rounded-md bg-blue-700 text-white text-xs font-bold">${escapeHtml(item.year)}</span>
+                <h4 class="font-bold text-blue-950 mt-1.5">${escapeHtml(item.title)}</h4>
+                <p class="text-sm text-slate-600 mt-1 leading-relaxed">${escapeHtml(item.desc)}</p>
+              </div>
+              ${isAdmin ? `
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button onclick="window.__editTimeline('${item.id}')" class="p-1.5 rounded-lg bg-white border border-blue-200 text-blue-700 hover:bg-blue-50" title="Edit">
+                    <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <button onclick="window.__deleteTimeline('${item.id}')" class="p-1.5 rounded-lg bg-white border border-red-200 text-red-600 hover:bg-red-50" title="Delete">
+                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function renderQuotes() {
+        const grid = document.getElementById('quotes-grid');
+        grid.innerHTML = state.quotes.map((q) => `
+          <div class="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm flex flex-col justify-between">
+            <div>
+              <i data-lucide="quote" class="w-6 h-6 text-blue-600 mb-2"></i>
+              <p class="text-slate-800 font-medium text-sm sm:text-base leading-relaxed">"${escapeHtml(q.text)}"</p>
+            </div>
+            <div class="flex items-center justify-between mt-4 pt-3 border-t border-blue-50">
+              <span class="text-xs font-bold text-blue-700">— ${escapeHtml(q.author)}</span>
+              ${isAdmin ? `
+                <div class="flex items-center gap-1">
+                  <button onclick="window.__editQuote('${q.id}')" class="p-1 rounded text-blue-700 hover:bg-blue-50"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
+                  <button onclick="window.__deleteQuote('${q.id}')" class="p-1 rounded text-red-600 hover:bg-red-50"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function renderParkMilestones() {
+        const grid = document.getElementById('park-milestones');
+        grid.innerHTML = state.parkMilestones.map((p) => `
+          <div class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-bold text-blue-700">${escapeHtml(p.phase)}</span>
+              <span class="px-2 py-0.5 rounded-full text-[11px] font-bold ${p.status === 'पूर्ण' ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800'}">${escapeHtml(p.status)}</span>
+            </div>
+            <h4 class="font-bold text-blue-950 text-sm mt-1.5">${escapeHtml(p.title)}</h4>
+            <p class="text-xs text-slate-600 mt-1 leading-relaxed">${escapeHtml(p.desc)}</p>
+            ${isAdmin ? `
+              <div class="flex justify-end gap-1.5 mt-3 pt-2 border-t border-slate-100">
+                <button onclick="window.__editPark('${p.id}')" class="px-2 py-1 rounded bg-blue-50 text-blue-700 text-xs font-semibold hover:bg-blue-100">Edit</button>
+                <button onclick="window.__deletePark('${p.id}')" class="px-2 py-1 rounded bg-red-50 text-red-600 text-xs font-semibold hover:bg-red-100">Delete</button>
+              </div>
+            ` : ''}
+          </div>
+        `).join('');
+      }
+
+      function renderMembers() {
+        const grid = document.getElementById('members-grid');
+        const q = memberSearchQuery.trim().toLowerCase();
+        const filtered = state.members.filter((m) =>
+          !q || m.name.toLowerCase().includes(q) || m.role.toLowerCase().includes(q) || (m.bio || '').toLowerCase().includes(q)
+        );
+        if (!filtered.length) {
+          grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-500 text-sm">कोई पदाधिकारी नहीं मिला।</div>';
+          return;
+        }
+        grid.innerHTML = filtered.map((m) => {
+          const initials = (m.name || 'M').trim().slice(0, 2).toUpperCase();
+          return `
+            <div class="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm flex flex-col justify-between text-center">
+              <div>
+                <div class="w-20 h-20 mx-auto rounded-full overflow-hidden border-2 border-blue-600 bg-blue-50 flex items-center justify-center text-blue-800 font-extrabold text-xl shadow-sm">
+                  ${m.photo ? `<img src="${escapeHtml(m.photo)}" alt="${escapeHtml(m.name)}" class="w-full h-full object-cover" />` : initials}
+                </div>
+                <h4 class="font-bold text-blue-950 text-base mt-3">${escapeHtml(m.name)}</h4>
+                <div class="inline-block px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold mt-1">${escapeHtml(m.role)}</div>
+                <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">${escapeHtml(m.bio)}</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-blue-50">
+                <div class="text-xs font-semibold text-blue-700 flex items-center justify-center gap-1">
+                  <i data-lucide="phone" class="w-3.5 h-3.5"></i> ${escapeHtml(m.phone || '—')}
+                </div>
+                ${isAdmin ? `
+                  <div class="flex justify-center gap-2 mt-3">
+                    <button onclick="window.__editMember('${m.id}')" class="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 text-xs font-semibold hover:bg-blue-100">Edit</button>
+                    <button onclick="window.__deleteMember('${m.id}')" class="px-2.5 py-1 rounded-lg bg-red-50 text-red-600 text-xs font-semibold hover:bg-red-100">Delete</button>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      function renderGallery() {
+        const categories = ['All', ...new Set(state.gallery.map((g) => g.category).filter(Boolean))];
+        if (!categories.includes(activeGalleryCategory)) activeGalleryCategory = 'All';
+
+        document.getElementById('gallery-filters').innerHTML = categories.map((cat) => `
+          <button onclick="window.__setGalleryCat('${escapeHtml(cat)}')" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition ${activeGalleryCategory === cat ? 'bg-blue-700 text-white shadow-sm' : 'bg-blue-50 text-blue-800 hover:bg-blue-100'}">
+            ${escapeHtml(cat)}
+          </button>
+        `).join('');
+
+        const items = activeGalleryCategory === 'All'
+          ? state.gallery
+          : state.gallery.filter((g) => g.category === activeGalleryCategory);
+
+        const grid = document.getElementById('gallery-grid');
+        if (!items.length) {
+          grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-500 text-sm">इस श्रेणी में कोई फोटो नहीं है।</div>';
+          return;
+        }
+        grid.innerHTML = items.map((g) => `
+          <div class="bg-white rounded-2xl overflow-hidden border border-blue-100 shadow-sm group flex flex-col">
+            <div class="aspect-[4/3] bg-blue-50 overflow-hidden cursor-pointer relative" onclick="window.__openLightbox('${g.id}')">
+              <img src="${escapeHtml(g.image)}" alt="${escapeHtml(g.title)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-blue-900/80 text-white text-[11px] font-semibold backdrop-blur-sm">${escapeHtml(g.category)}</span>
+            </div>
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="font-bold text-blue-950 text-sm sm:text-base">${escapeHtml(g.title)}</h4>
+                <p class="text-xs text-slate-600 mt-1">${escapeHtml(g.desc)}</p>
+              </div>
+              ${isAdmin ? `
+                <div class="flex justify-end gap-2 mt-3 pt-2 border-t border-slate-100">
+                  <button onclick="window.__editGallery('${g.id}')" class="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 text-xs font-semibold hover:bg-blue-100">Edit</button>
+                  <button onclick="window.__deleteGallery('${g.id}')" class="px-2.5 py-1 rounded-lg bg-red-50 text-red-600 text-xs font-semibold hover:bg-red-100">Delete</button>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function renderEvents() {
+        const grid = document.getElementById('events-grid');
+        grid.innerHTML = state.events.map((ev) => `
+          <div class="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">
+                <i data-lucide="calendar-days" class="w-3.5 h-3.5"></i> ${escapeHtml(ev.date)}
+              </div>
+              <h4 class="font-bold text-blue-950 text-lg mt-3">${escapeHtml(ev.title)}</h4>
+              <div class="text-xs font-semibold text-blue-600 mt-1 flex items-center gap-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> ${escapeHtml(ev.location)}
+              </div>
+              <p class="text-sm text-slate-600 mt-2.5 leading-relaxed">${escapeHtml(ev.desc)}</p>
+            </div>
+            ${isAdmin ? `
+              <div class="flex justify-end gap-2 mt-4 pt-3 border-t border-slate-100">
+                <button onclick="window.__editEvent('${ev.id}')" class="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 text-xs font-semibold hover:bg-blue-100">Edit</button>
+                <button onclick="window.__deleteEvent('${ev.id}')" class="px-2.5 py-1 rounded-lg bg-red-50 text-red-600 text-xs font-semibold hover:bg-red-100">Delete</button>
+              </div>
+            ` : ''}
+          </div>
+        `).join('');
+      }
+
+      // Helper to read uploaded image file as Data URL
+      function attachFilePreview(fileInputId, urlInputId) {
+        const fileEl = document.getElementById(fileInputId);
+        const urlEl = document.getElementById(urlInputId);
+        if (!fileEl || !urlEl) return;
+        fileEl.addEventListener('change', () => {
+          const file = fileEl.files && fileEl.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            urlEl.value = reader.result;
+            showToast('फोटो लोड हो गई, अब Save बटन दबाएं।');
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // Click-to-edit ANY text in Admin mode
+      document.addEventListener('click', (e) => {
+        if (!isAdmin || !inlineEditOn) return;
+        const target = e.target.closest('[data-edit]');
+        if (!target) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const key = target.getAttribute('data-edit');
+        const currentVal = state.texts[key] || target.textContent;
+        openModal('Text Edit Karein', `
+          <form id="inline-text-form" class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Naya Text Likhein</label>
+              <textarea id="inline-text-val" rows="4" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">${escapeHtml(currentVal)}</textarea>
+            </div>
+            <div class="flex justify-end gap-2">
+              <button type="button" id="cancel-inline" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 text-sm font-semibold">Cancel</button>
+              <button type="submit" class="px-4 py-2 rounded-xl bg-blue-700 text-white text-sm font-semibold hover:bg-blue-800">Save Karein</button>
+            </div>
+          </form>
+        `);
+        document.getElementById('cancel-inline').addEventListener('click', closeModal);
+        document.getElementById('inline-text-form').addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          state.texts[key] = document.getElementById('inline-text-val').value.trim();
+          saveState();
+          renderAll();
+          closeModal();
+          showToast('Text update ho gaya!');
+        });
+      });
+
+      // Replace Hero/Park Images
+      document.querySelectorAll('[data-img-edit]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const imgKey = btn.getAttribute('data-img-edit');
+          openModal('Photo Badlein', `
+            <form id="img-replace-form" class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Device se Nayi Photo Chunein</label>
+                <input id="rep-img-file" type="file" accept="image/*" class="w-full text-sm text-slate-600" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Ya Image URL Paste Karein</label>
+                <input id="rep-img-url" type="text" value="${escapeHtml(state.images[imgKey])}" class="w-full px-3.5 py-2 rounded-xl border border-blue-200 text-sm" />
+              </div>
+              <div class="flex justify-end gap-2">
+                <button type="button" id="rep-cancel" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 text-sm font-semibold">Cancel</button>
+                <button type="submit" class="px-4 py-2 rounded-xl bg-blue-700 text-white text-sm font-semibold">Save Photo</button>
+              </div>
+            </form>
+          `);
+          attachFilePreview('rep-img-file', 'rep-img-url');
+          document.getElementById('rep-cancel').addEventListener('click', closeModal);
+          document.getElementById('img-replace-form').addEventListener('submit', (ev) => {
+            ev.preventDefault();
+            const val = document.getElementById('rep-img-url').value.trim();
+            if (val) {
+              state.images[imgKey] = val;
+              saveState();
+              renderAll();
+              closeModal();
+              showToast('Photo update ho gayi!');
+            }
+          });
+        });
+      });
+
+      // Admin Login / Logout / Toggle
+      document.getElementById('btn-admin-login-nav').addEventListener('click', () => {
+        if (isAdmin) {
+          document.getElementById('admin-bar').scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+        openModal('Admin Login (Sirf Malik Ke Liye)', `
+          <form id="admin-login-form" class="space-y-4">
+            <p class="text-sm text-slate-600">Website ki har chhoti-badi cheez edit karne aur naye padadhikari/photos jodne ke liye Admin PIN daalein.</p>
+            <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900">
+              Default Admin PIN: <strong>1956</strong> (Login ke baad Settings se aap apna naya PIN rakh sakte hain)
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Admin PIN</label>
+              <input id="login-pin" type="password" required placeholder="PIN daalein (e.g. 1956)" class="w-full px-3.5 py-2.5 rounded-xl border border-blue-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <p id="login-err" class="text-xs text-red-600 mt-1 hidden">Galat PIN! Kripya sahi PIN daalein.</p>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm">Admin Mode Chalu Karein</button>
+          </form>
+        `);
+        document.getElementById('admin-login-form').addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          const pin = document.getElementById('login-pin').value.trim();
+          if (pin === state.adminPin) {
+            isAdmin = true;
+            closeModal();
+            renderAll();
+            showToast('Admin Mode ON! Ab aap kuch bhi edit aur add kar sakte hain.');
+          } else {
+            document.getElementById('login-err').classList.remove('hidden');
+          }
+        });
+      });
+
+      document.getElementById('btn-admin-logout').addEventListener('click', () => {
+        isAdmin = false;
+        renderAll();
+        showToast('Admin Mode band kar diya gaya.');
+      });
+
+      document.getElementById('btn-toggle-inline-edit').addEventListener('click', () => {
+        inlineEditOn = !inlineEditOn;
+        renderAll();
+      });
+
+      // Admin Settings, Counter, Destination & JSON Backup
+      document.getElementById('btn-open-settings').addEventListener('click', () => {
+        openModal('Site Settings, Counter & Backup', `
+          <form id="settings-form" class="space-y-4">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Visitor Counter</label>
+                <input id="set-visitors" type="number" value="${state.stats.visitors}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Supporter Counter</label>
+                <input id="set-supporters" type="number" value="${state.stats.supporters}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Google Maps Destination Link</label>
+              <input id="set-maps" type="url" value="${escapeHtml(state.mapsUrl)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Naya Admin PIN Set Karein</label>
+              <input id="set-pin" type="text" value="${escapeHtml(state.adminPin)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div class="p-3.5 rounded-xl bg-blue-50 border border-blue-200 space-y-2">
+              <label class="block text-xs font-bold text-blue-950">Live Cloud Database URL (Firebase Realtime DB)</label>
+              <input id="set-cloud-url" type="url" value="${escapeHtml(state.cloudSyncUrl || '')}" placeholder="https://your-project-default-rtdb.firebaseio.com" class="w-full px-3 py-2 rounded-xl border border-blue-200 bg-white text-xs" />
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                <strong>Free Setup:</strong> Firebase Console par Realtime Database banayein (Test Mode), uska <code>https://...firebaseio.com</code> URL yahan paste karein aur Save dabayein. Sabhi visitors ko live updates dikhenge!
+              </p>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm">Settings Save Karein</button>
+          </form>
+
+          <div class="mt-6 pt-5 border-t border-slate-200 space-y-3">
+            <div class="text-xs font-bold uppercase text-slate-500">Data Backup & Restore</div>
+            <div class="flex flex-wrap gap-2">
+              <button id="btn-export-json" class="px-3.5 py-2 rounded-xl bg-blue-50 text-blue-800 text-xs font-bold hover:bg-blue-100">Export Backup (JSON)</button>
+              <label class="px-3.5 py-2 rounded-xl bg-slate-100 text-slate-800 text-xs font-bold hover:bg-slate-200 cursor-pointer">
+                Import Backup
+                <input id="input-import-json" type="file" accept=".json" class="hidden" />
+              </label>
+              <button id="btn-reset-default" class="px-3.5 py-2 rounded-xl bg-red-50 text-red-700 text-xs font-bold hover:bg-red-100">Reset Default</button>
+            </div>
+          </div>
+        `);
+
+        document.getElementById('settings-form').addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          state.stats.visitors = Math.max(0, parseInt(document.getElementById('set-visitors').value, 10) || 0);
+          state.stats.supporters = Math.max(0, parseInt(document.getElementById('set-supporters').value, 10) || 0);
+          state.mapsUrl = document.getElementById('set-maps').value.trim() || 'https://maps.google.com/?q=Ajpura';
+          const newPin = document.getElementById('set-pin').value.trim();
+          if (newPin) state.adminPin = newPin;
+          state.cloudSyncUrl = getCleanDbUrl(document.getElementById('set-cloud-url').value);
+          saveState();
+          renderAll();
+          closeModal();
+          showToast('Settings save ho gayi!');
+        });
+
+        document.getElementById('btn-export-json').addEventListener('click', () => {
+          const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'ambedkar-mission-ajpura-backup.json';
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('input-import-json').addEventListener('change', (ev) => {
+          const file = ev.target.files && ev.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const imported = JSON.parse(reader.result);
+              if (imported && imported.texts) {
+                state = { ...structuredClone(DEFAULT_DATA), ...imported };
+                saveState();
+                renderAll();
+                closeModal();
+                showToast('Backup restore ho gaya!');
+              }
+            } catch (err) {
+              showToast('Invalid JSON file.');
+            }
+          };
+          reader.readAsText(file);
+        });
+
+        document.getElementById('btn-reset-default').addEventListener('click', () => {
+          state = structuredClone(DEFAULT_DATA);
+          saveState();
+          renderAll();
+          closeModal();
+          showToast('Website default data par reset ho gayi.');
+        });
+      });
+
+      // Admin Inbox
+      document.getElementById('btn-open-inbox').addEventListener('click', () => {
+        const listHtml = state.inbox.length
+          ? state.inbox.map((msg) => `
+              <div class="p-4 rounded-xl bg-blue-50/60 border border-blue-100 space-y-1">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-blue-950 text-sm">${escapeHtml(msg.name)} (${escapeHtml(msg.phone)})</span>
+                  <button onclick="window.__deleteInbox('${msg.id}')" class="text-xs text-red-600 font-semibold hover:underline">Delete</button>
+                </div>
+                <div class="text-xs font-semibold text-blue-700">${escapeHtml(msg.subject || 'सामान्य संदेश')} • ${escapeHtml(msg.date)}</div>
+                <p class="text-sm text-slate-700 pt-1">${escapeHtml(msg.message)}</p>
+              </div>
+            `).join('')
+          : '<p class="text-sm text-slate-500 text-center py-6">Abhi tak koi sandesh nahi aaya hai.</p>';
+        openModal('Visitor Sandesh Inbox', `<div class="space-y-3">${listHtml}</div>`);
+      });
+
+      window.__deleteInbox = (id) => {
+        state.inbox = state.inbox.filter((m) => m.id !== id);
+        saveState();
+        renderAll();
+        document.getElementById('btn-open-inbox').click();
+      };
+
+      // CRUD: Padadhikari / Members
+      function openMemberModal(existing) {
+        const isEdit = Boolean(existing);
+        const m = existing || { name: '', role: '', phone: '', bio: '', photo: '' };
+        openModal(isEdit ? 'पदाधिकारी Edit करें' : 'नया पदाधिकारी / सदस्य जोड़ें', `
+          <form id="member-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">पूरा नाम *</label>
+              <input id="m-name" type="text" required value="${escapeHtml(m.name)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">पद / जिम्मेदारी *</label>
+              <input id="m-role" type="text" required value="${escapeHtml(m.role)}" placeholder="जैसे: अध्यक्ष, सचिव, सदस्य" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">मोबाइल नंबर</label>
+              <input id="m-phone" type="text" value="${escapeHtml(m.phone)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">विवरण / परिचय</label>
+              <textarea id="m-bio" rows="2" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm">${escapeHtml(m.bio)}</textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">फोटो अपलोड करें (Optional)</label>
+              <input id="m-file" type="file" accept="image/*" class="w-full text-xs text-slate-600 mb-1.5" />
+              <input id="m-photo" type="text" value="${escapeHtml(m.photo)}" placeholder="या फोटो का URL लिखें" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm">Save Karein</button>
+          </form>
+        `);
+        attachFilePreview('m-file', 'm-photo');
+        document.getElementById('member-form').addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          const payload = {
+            id: isEdit ? m.id : 'm_' + Date.now(),
+            name: document.getElementById('m-name').value.trim(),
+            role: document.getElementById('m-role').value.trim(),
+            phone: document.getElementById('m-phone').value.trim(),
+            bio: document.getElementById('m-bio').value.trim(),
+            photo: document.getElementById('m-photo').value.trim()
+          };
+          if (isEdit) {
+            state.members = state.members.map((x) => (x.id === m.id ? payload : x));
+          } else {
+            state.members.push(payload);
+          }
+          saveState();
+          renderAll();
+          closeModal();
+          showToast(isEdit ? 'पदाधिकारी अपडेट हो गए!' : 'नया सदस्य जोड़ा गया!');
+        });
+      }
+
+      document.getElementById('btn-add-member').addEventListener('click', () => openMemberModal(null));
+      window.__editMember = (id) => openMemberModal(state.members.find((m) => m.id === id));
+      window.__deleteMember = (id) => {
+        state.members = state.members.filter((m) => m.id !== id);
+        saveState();
+        renderAll();
+        showToast('पदाधिकारी हटा दिया गया।');
+      };
+
+      // CRUD: Gallery
+      function openGalleryModal(existing) {
+        const isEdit = Boolean(existing);
+        const g = existing || { title: '', category: 'Park Nirman 2022', image: '', desc: '' };
+        openModal(isEdit ? 'फोटो Edit करें' : 'गैलरी में नयी फोटो जोड़ें', `
+          <form id="gallery-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">फोटो का शीर्षक *</label>
+              <input id="g-title" type="text" required value="${escapeHtml(g.title)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">श्रेणी (Category) *</label>
+              <input id="g-cat" type="text" required value="${escapeHtml(g.category)}" placeholder="Park Nirman 2022 / Jayanti & Prerna" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">फोटो चुनें या URL डालें *</label>
+              <input id="g-file" type="file" accept="image/*" class="w-full text-xs text-slate-600 mb-1.5" />
+              <input id="g-image" type="text" required value="${escapeHtml(g.image)}" placeholder="Image URL ya upload karein" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">विवरण</label>
+              <textarea id="g-desc" rows="2" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm">${escapeHtml(g.desc)}</textarea>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm">Save Karein</button>
+          </form>
+        `);
+        attachFilePreview('g-file', 'g-image');
+        document.getElementById('gallery-form').addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          const payload = {
+            id: isEdit ? g.id : 'g_' + Date.now(),
+            title: document.getElementById('g-title').value.trim(),
+            category: document.getElementById('g-cat').value.trim(),
+            image: document.getElementById('g-image').value.trim(),
+            desc: document.getElementById('g-desc').value.trim()
+          };
+          if (isEdit) {
+            state.gallery = state.gallery.map((x) => (x.id === g.id ? payload : x));
+          } else {
+            state.gallery.unshift(payload);
+          }
+          saveState();
+          renderAll();
+          closeModal();
+          showToast(isEdit ? 'फोटो अपडेट हो गई!' : 'नयी फोटो गैलरी में जुड़ गई!');
+        });
+      }
+
+      document.getElementById('btn-add-gallery').addEventListener('click', () => openGalleryModal(null));
+      window.__editGallery = (id) => openGalleryModal(state.gallery.find((g) => g.id === id));
+      window.__deleteGallery = (id) => {
+        state.gallery = state.gallery.filter((g) => g.id !== id);
+        saveState();
+        renderAll();
+        showToast('फोटो हटा दी गई।');
+      };
+      window.__setGalleryCat = (cat) => {
+        activeGalleryCategory = cat;
+        renderGallery();
+      };
+
+      // Lightbox
+      window.__openLightbox = (id) => {
+        const g = state.gallery.find((x) => x.id === id);
+        if (!g) return;
+        document.getElementById('lightbox-img').src = g.image;
+        document.getElementById('lightbox-caption').textContent = g.title + (g.desc ? ' — ' + g.desc : '');
+        document.getElementById('lightbox').classList.remove('hidden');
+      };
+      document.getElementById('lightbox-close').addEventListener('click', () => {
+        document.getElementById('lightbox').classList.add('hidden');
+      });
+      document.getElementById('lightbox').addEventListener('click', (e) => {
+        if (e.target.id === 'lightbox') document.getElementById('lightbox').classList.add('hidden');
+      });
+
+      // CRUD: Timeline
+      function openTimelineModal(existing) {
+        const isEdit = Boolean(existing);
+        const t = existing || { year: '', title: '', desc: '' };
+        openModal(isEdit ? 'पड़ाव Edit करें' : 'नया ऐतिहासिक पड़ाव जोड़ें', `
+          <form id="tl-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">वर्ष / दिनांक *</label>
+              <input id="tl-year" type="text" required value="${escapeHtml(t.year)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">शीर्षक *</label>
+              <input id="tl-title" type="text" required value="${escapeHtml(t.title)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">विवरण *</label>
+              <textarea id="tl-desc" rows="3" required class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm">${escapeHtml(t.desc)}</textarea>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm">Save Karein</button>
+          </form>
+        `);
+        document.getElementById('tl-form').addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          const payload = {
+            id: isEdit ? t.id : 't_' + Date.now(),
+            year: document.getElementById('tl-year').value.trim(),
+            title: document.getElementById('tl-title').value.trim(),
+            desc: document.getElementById('tl-desc').value.trim()
+          };
+          if (isEdit) {
+            state.timeline = state.timeline.map((x) => (x.id === t.id ? payload : x));
+          } else {
+            state.timeline.push(payload);
+          }
+          saveState();
+          renderAll();
+          closeModal();
+          showToast('जीवनी जानकारी अपडेट हो गई!');
+        });
+      }
+
+      document.getElementById('btn-add-timeline').addEventListener('click', () => openTimelineModal(null));
+      window.__editTimeline = (id) => openTimelineModal(state.timeline.find((t) => t.id === id));
+      window.__deleteTimeline = (id) => {
+        state.timeline = state.timeline.filter((t) => t.id !== id);
+        saveState();
+        renderAll();
+      };
+
+      // CRUD: Quotes
+      function openQuoteModal(existing) {
+        const isEdit = Boolean(existing);
+        const q = existing || { text: '', author: 'डॉ. भीमराव अंबेडकर' };
+        openModal(isEdit ? 'विचार Edit करें' : 'नया विचार जोड़ें', `
+          <form id="q-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">विचार *</label>
+              <textarea id="q-text" rows="3" required class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm">${escapeHtml(q.text)}</textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">लेखक *</label>
+              <input id="q-author" type="text" required value="${escapeHtml(q.author)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm">Save Karein</button>
+          </form>
+        `);
+        document.getElementById('q-form').addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          const payload = {
+            id: isEdit ? q.id : 'q_' + Date.now(),
+            text: document.getElementById('q-text').value.trim(),
+            author: document.getElementById('q-author').value.trim()
+          };
+          if (isEdit) {
+            state.quotes = state.quotes.map((x) => (x.id === q.id ? payload : x));
+          } else {
+            state.quotes.push(payload);
+          }
+          saveState();
+          renderAll();
+          closeModal();
+        });
+      }
+      document.getElementById('btn-add-quote').addEventListener('click', () => openQuoteModal(null));
+      window.__editQuote = (id) => openQuoteModal(state.quotes.find((q) => q.id === id));
+      window.__deleteQuote = (id) => {
+        state.quotes = state.quotes.filter((q) => q.id !== id);
+        saveState();
+        renderAll();
+      };
+
+      // CRUD: Park Nirman Milestones
+      function openParkModal(existing) {
+        const isEdit = Boolean(existing);
+        const p = existing || { phase: 'चरण (2022)', title: '', status: 'पूर्ण', desc: '' };
+        openModal(isEdit ? 'पार्क कार्य Edit करें' : 'पार्क निर्माण कार्य जोड़ें', `
+          <form id="park-form" class="space-y-3.5">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">चरण / वर्ष *</label>
+                <input id="p-phase" type="text" required value="${escapeHtml(p.phase)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">स्थिति *</label>
+                <select id="p-status" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm bg-white">
+                  <option value="पूर्ण" ${p.status === 'पूर्ण' ? 'selected' : ''}>पूर्ण</option>
+                  <option value="सक्रिय" ${p.status === 'सक्रिय' ? 'selected' : ''}>सक्रिय</option>
+                  <option value="प्रस्तावित" ${p.status === 'प्रस्तावित' ? 'selected' : ''}>प्रस्तावित</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">कार्य शीर्षक *</label>
+              <input id="p-title" type="text" required value="${escapeHtml(p.title)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">विवरण *</label>
+              <textarea id="p-desc" rows="2" required class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm">${escapeHtml(p.desc)}</textarea>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm">Save Karein</button>
+          </form>
+        `);
+        document.getElementById('park-form').addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          const payload = {
+            id: isEdit ? p.id : 'p_' + Date.now(),
+            phase: document.getElementById('p-phase').value.trim(),
+            status: document.getElementById('p-status').value,
+            title: document.getElementById('p-title').value.trim(),
+            desc: document.getElementById('p-desc').value.trim()
+          };
+          if (isEdit) {
+            state.parkMilestones = state.parkMilestones.map((x) => (x.id === p.id ? payload : x));
+          } else {
+            state.parkMilestones.push(payload);
+          }
+          saveState();
+          renderAll();
+          closeModal();
+        });
+      }
+      document.getElementById('btn-add-park-item').addEventListener('click', () => openParkModal(null));
+      window.__editPark = (id) => openParkModal(state.parkMilestones.find((p) => p.id === id));
+      window.__deletePark = (id) => {
+        state.parkMilestones = state.parkMilestones.filter((p) => p.id !== id);
+        saveState();
+        renderAll();
+      };
+
+      // CRUD: Events / Karyakram
+      function openEventModal(existing) {
+        const isEdit = Boolean(existing);
+        const evItem = existing || { date: '', title: '', location: 'अंबेडकर पार्क, अजपुरा', desc: '' };
+        openModal(isEdit ? 'कार्यक्रम Edit करें' : 'नया कार्यक्रम जोड़ें', `
+          <form id="ev-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">दिनांक *</label>
+              <input id="ev-date" type="text" required value="${escapeHtml(evItem.date)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">कार्यक्रम का नाम *</label>
+              <input id="ev-title" type="text" required value="${escapeHtml(evItem.title)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">स्थान *</label>
+              <input id="ev-loc" type="text" required value="${escapeHtml(evItem.location)}" class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">विवरण *</label>
+              <textarea id="ev-desc" rows="2" required class="w-full px-3 py-2 rounded-xl border border-blue-200 text-sm">${escapeHtml(evItem.desc)}</textarea>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm">Save Karein</button>
+          </form>
+        `);
+        document.getElementById('ev-form').addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          const payload = {
+            id: isEdit ? evItem.id : 'e_' + Date.now(),
+            date: document.getElementById('ev-date').value.trim(),
+            title: document.getElementById('ev-title').value.trim(),
+            location: document.getElementById('ev-loc').value.trim(),
+            desc: document.getElementById('ev-desc').value.trim()
+          };
+          if (isEdit) {
+            state.events = state.events.map((x) => (x.id === evItem.id ? payload : x));
+          } else {
+            state.events.push(payload);
+          }
+          saveState();
+          renderAll();
+          closeModal();
+        });
+      }
+      document.getElementById('btn-add-event').addEventListener('click', () => openEventModal(null));
+      window.__editEvent = (id) => openEventModal(state.events.find((e) => e.id === id));
+      window.__deleteEvent = (id) => {
+        state.events = state.events.filter((e) => e.id !== id);
+        saveState();
+        renderAll();
+      };
+
+      // Interactive Controls: Supporter Counter, Member Search, Mobile Menu, Contact Form
+      document.getElementById('btn-jai-bhim-support').addEventListener('click', () => {
+        state.stats.supporters += 1;
+        saveState();
+        renderAll();
+        showToast('जय भीम! मिशन में आपका समर्थन जुड़ गया है।');
+      });
+
+      document.getElementById('member-search').addEventListener('input', (e) => {
+        memberSearchQuery = e.target.value;
+        renderMembers();
+      });
+
+      document.getElementById('btn-mobile-menu').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
+      document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          document.getElementById('mobile-menu').classList.add('hidden');
+        });
+      });
+
+      document.getElementById('contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        state.inbox.unshift({
+          id: 'msg_' + Date.now(),
+          name: document.getElementById('cf-name').value.trim(),
+          phone: document.getElementById('cf-phone').value.trim(),
+          subject: document.getElementById('cf-subject').value.trim(),
+          message: document.getElementById('cf-message').value.trim(),
+          date: new Date().toLocaleDateString('en-IN')
+        });
+        saveState();
+        renderAll();
+        e.target.reset();
+        showToast('आपका संदेश सफलतापूर्वक भेज दिया गया है! Admin Inbox में सेव हो गया है।');
+      });
+
+      renderAll();
+      fetchCloudState();
+    })();
+  </script>
+</body>
+</html>
